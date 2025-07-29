@@ -9,14 +9,6 @@ createRoot(document.getElementById('root')).render(
   <App />
 
 )
-/* import React from "react";
 
-export default function App() {
-  return (
-
-    <h1>ciao</h1>
-
-  )
-} */
 
   
