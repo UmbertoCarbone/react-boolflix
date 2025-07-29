@@ -60,11 +60,14 @@ export default function App() {
 
             {/* map per le generare le card */}
             {AllResults.map(movie => (
+
               <div className="col-4 mb-2" key={movie.id}>
                 <div className="card h-100 text-center">
+                  <img src={`https://image.tmdb.org/t/p/w342/${movie.poster_path}`}
+                    alt={movie.title} />
                   <h4>Titolo: {movie.title} </h4>
                   <h4>Titolo Originale: {movie.original_title}</h4>
-                  <p>Lingua:{movie.original_language}<CountryFlag countryCode={movie.original_language.toUpperCase()} svg /></p>{" "}
+                  <p>Lingua:{movie.original_language}<CountryFlag countryCode={movie.original_language} svg /></p>{" "}
                   <p>Voto:{movie.vote_average}</p>
                 </div>
               </div>
