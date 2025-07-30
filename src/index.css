@@ -1,2 +1,52 @@
 @import 'bootstrap/dist/css/bootstrap.min.css';
 
+/* Card effetto hover per mostrare dettagli */
+.card-hover {
+    position: relative;
+    overflow: hidden;
+}
+
+/* Dettagli nascosti di default, visibili solo all'hover */
+.card-details {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(20, 20, 20, 0.95);
+    color: #fff;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s;
+    padding: 12px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-size: 0.75rem;
+    line-height: 1.1;
+    
+}
+
+
+.card-hover:hover .card-details {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+
+.card-hover:hover .card-img {
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+
+.trama-small {
+    font-size: 0.7rem;
+    line-height: 1.1;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
