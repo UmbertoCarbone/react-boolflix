@@ -1,17 +1,12 @@
 import React, { useState } from "react";
-
-//libreria bandiere
-import CountryFlag from "react-country-flag";
-import { getCountryCode } from "./data/getCountryCode";
-//librearia FontAwesome
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faStar as solidStar } from "@fortawesome/free-solid-svg-icons";
-import { faStar as regularStar } from "@fortawesome/free-regular-svg-icons";
+import MovieCard from "./components/MovieCard";
 
 export default function App() {
   const [query, setQuery] = useState("");
   const [movies, setMovies] = useState([]);
   const [film, setFilm] = useState([]);
+  const [tv, setTv] = useState([]);
+  const [moviess, setMoviess] = useState([]);
 
 
 
@@ -21,7 +16,12 @@ export default function App() {
   //API 
   const api_endpoint_movie = `https://api.themoviedb.org/3/search/movie?api_key=${api_key}&query=${query}`;
   const api_endpoint_film = `https://api.themoviedb.org/3/search/tv?api_key=${api_key}&query=${query} `
+  const api_actors_movie = `https://api.themoviedb.org/3/movie/${movie_id}/credits?api_key=${api_key}&language=it-IT`
+  const api_actors_film =`https://api.themoviedb.org/3/tv/${tv_id}/credits?api_key=${api_key}&language=it-IT`
 
+
+
+  console.log(api_actors_movie,api_actors_film)
   //modifica dell'array film
   const normalizedFilm = film.map(item => ({
     ...item,
@@ -41,7 +41,17 @@ export default function App() {
     fetch(api_endpoint_film)
       .then((res) => res.json())
       .then(data => setFilm(data.results));
+
+      fetch(api_actors_film)
+      .then((res) => res.json())
+      .then(data => setTv(data.results));
+
+      fetch(api_actors_movie)
+      .then((res) => res.json())
+      .then(data => setMoviess(data.results));
   }
+
+
 
   return (
     <>
@@ -64,40 +74,10 @@ export default function App() {
       <section className="pt-4">
         <div className="container">
           <div className="row">
-
             {/* map per le generare le card */}
-            {AllResults.map(movie => {
-              const stelle = Math.ceil(movie.vote_average / 2);
-              return (
-                <div className="col-3 mb-2 " key={movie.id}>
-                  <div className="card h-100 card-hover border-0">
-                    <img
-                      src={`https://image.tmdb.org/t/p/w342/${movie.poster_path}`}
-                      alt={movie.title}
-                      className="card-img "
-                    />
-                    <div className="card-details ">
-                      <strong>Titolo:</strong><p>{movie.title}</p>
-                      <strong>Titolo Originale:</strong><p>{movie.original_title}</p>
-                      <p>
-                        Lingua: {movie.original_language}
-                        <CountryFlag countryCode={getCountryCode(movie.original_language)} svg /></p>
-                      <span> Voto:
-                        {Array.from({ length: 5 }).map((_, i) =>
-                          i < stelle
-                            ? <FontAwesomeIcon icon={solidStar} key={i} style={{ color: '#FFD700' }} />
-                            : <FontAwesomeIcon icon={regularStar} key={i} style={{ color: '#FFD700' }} />
-                        )}
-                      </span>
-                      <p className="trama-small">
-                        <strong>Trama:</strong>
-                        {movie.overview}
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              )
-            })}
+            {AllResults.map(movie => (
+              <MovieCard movie={movie} key={movie.id} />
+            ))}
           </div>
         </div>
       </section >
