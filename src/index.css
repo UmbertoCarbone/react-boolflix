@@ -17,14 +17,14 @@
     color: #fff;
     opacity: 0;
     pointer-events: none;
-    transition: opacity 0.3s;
+
     padding: 12px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     font-size: 0.75rem;
     line-height: 1.1;
-    
+
 }
 
 
@@ -36,7 +36,6 @@
 
 .card-hover:hover .card-img {
     opacity: 0;
-    transition: opacity 0.3s;
 }
 
 
@@ -49,4 +48,15 @@
     -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis;
+}
+
+.card {
+    border-radius: 0 !important;
+    --bs-card-border-radius: 0 !important;
+}
+
+.card-img,
+.card-img-top,
+img {
+    border-radius: 0 !important;
 }

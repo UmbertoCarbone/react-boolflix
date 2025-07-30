@@ -61,7 +61,7 @@ export default function App() {
         </nav>
       </section>
 
-      <section>
+      <section className="pt-4">
         <div className="container">
           <div className="row">
 
@@ -69,14 +69,14 @@ export default function App() {
             {AllResults.map(movie => {
               const stelle = Math.ceil(movie.vote_average / 2);
               return (
-                <div className="col-3 mb-2" key={movie.id}>
-                  <div className="card h-100 card-hover">
+                <div className="col-3 mb-2 " key={movie.id}>
+                  <div className="card h-100 card-hover border-0">
                     <img
                       src={`https://image.tmdb.org/t/p/w342/${movie.poster_path}`}
                       alt={movie.title}
-                      className="card-img"
+                      className="card-img "
                     />
-                    <div className="card-details">
+                    <div className="card-details ">
                       <strong>Titolo:</strong><p>{movie.title}</p>
                       <strong>Titolo Originale:</strong><p>{movie.original_title}</p>
                       <p>
