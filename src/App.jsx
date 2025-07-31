@@ -5,8 +5,7 @@ export default function App() {
   const [query, setQuery] = useState("");
   const [movies, setMovies] = useState([]);
   const [film, setFilm] = useState([]);
-  const [tv, setTv] = useState([]);
-  const [moviess, setMoviess] = useState([]);
+ 
 
 
 
@@ -16,12 +15,10 @@ export default function App() {
   //API 
   const api_endpoint_movie = `https://api.themoviedb.org/3/search/movie?api_key=${api_key}&query=${query}`;
   const api_endpoint_film = `https://api.themoviedb.org/3/search/tv?api_key=${api_key}&query=${query} `
-  const api_actors_movie = `https://api.themoviedb.org/3/movie/${movie_id}/credits?api_key=${api_key}&language=it-IT`
-  const api_actors_film =`https://api.themoviedb.org/3/tv/${tv_id}/credits?api_key=${api_key}&language=it-IT`
 
 
 
-  console.log(api_actors_movie,api_actors_film)
+
   //modifica dell'array film
   const normalizedFilm = film.map(item => ({
     ...item,
@@ -42,13 +39,7 @@ export default function App() {
       .then((res) => res.json())
       .then(data => setFilm(data.results));
 
-      fetch(api_actors_film)
-      .then((res) => res.json())
-      .then(data => setTv(data.results));
 
-      fetch(api_actors_movie)
-      .then((res) => res.json())
-      .then(data => setMoviess(data.results));
   }
 
 
